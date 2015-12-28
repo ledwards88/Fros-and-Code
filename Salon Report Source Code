@@ -1,0 +1,129 @@
+import java.util.*;
+import javax.swing.JOptionPane;
+
+public class SalonReport
+{
+      /* A program that displays salon services to the user according to the sort option chosen. */
+      public static void main(String[] args)
+      {
+         Service[] salonServices = new Service[6];
+         final int EXIT = 0, SERVICE_DESCRIPTION = 1, PRICE = 2, TIME_REQUIRED = 3;
+         int userSortOption;
+         
+         //Instantiates 6 service objects.
+        salonServices[0] = new Service("Cut", 8.00, 15);
+        salonServices[1] = new Service("Shampoo", 4.00, 10);
+        salonServices[2] = new Service("Manicure", 18.00, 30);
+        salonServices[3] = new Service("Style", 48.00, 55);
+        salonServices[4] = new Service("Permanent", 18.00, 35);
+        salonServices[5] = new Service("Trim", 6.00, 5);
+         
+         //Continues displaying requested menu until the user exits.
+         do
+         {
+            //Prompts until valid sort option is selected.
+            do
+            {
+               userSortOption = Integer.parseInt(JOptionPane.showInputDialog(null, "Hello, How you like to view the services menu?" +
+                  "\nEnter the number of your sort preference:\n 1) Service Description\n2) Price\n3) Time (Minutes)"));
+                  
+            }while((userSortOption < EXIT) || (userSortOption > TIME_REQUIRED));
+            
+            //Evaluates and displays user's sort selection
+            if(userSortOption == SERVICE_DESCRIPTION)
+            {
+               serviceDescriptionSort(salonServices);
+               
+               JOptionPane.showMessageDialog(null, "Services by service Description:\n" + salonServices[0].getServiceDescription() +
+                  " Price: $8.00 Time: 15\n" + salonServices[1].getServiceDescription() + " Price: $18.00 Time: 30\n" + 
+                 salonServices[2].getServiceDescription() + " Price: $18.00 Time: 35\n" + salonServices[3].getServiceDescription() + 
+                  " Price: $4.00 Time: 10\n" + salonServices[4].getServiceDescription() + " Price: $48.00 Time: 55\n" +
+                 salonServices[5].getServiceDescription() + " Price: $6.00 Time: 5");
+            }
+            if(userSortOption == PRICE)
+            {
+               priceSort(salonServices);
+               
+               JOptionPane.showMessageDialog(null, "Services by price:\n" + salonServices[0].getServicePrice() +
+                  " Price: $4.00 Time: 10\n" + salonServices[1].getServicePrice() + " Price: $6.00 Time: 5\n" + 
+                 salonServices[2].getServicePrice() + " Price: $8.00 Time: 15\n" + salonServices[3].getServicePrice() + 
+                  " Price: $18.00 Time: 30\n" + salonServices[4].getServicePrice() + " Price: $18.00 Time: 35\n" +
+                 salonServices[5].getServicePrice() + " Price: $48.00 Time: 55");
+            }
+            if(userSortOption == TIME_REQUIRED)
+            {
+               timeRequiredSort(salonServices);
+               
+               JOptionPane.showMessageDialog(null, "Services by time in minutes:\n" + salonServices[0].getTimeRequired() +
+                  " Price: $6.00 Time: 5\n" + salonServices[1].getTimeRequired() + " Price: $4.00 Time: 10\n" + 
+                 salonServices[2].getTimeRequired() + " Price: $8.00 Time: 15\n" + salonServices[3].getTimeRequired() + 
+                  " Price: $18.00 Time: 30\n" + salonServices[4].getTimeRequired() + " Price: $18.00 Time: 35\n" +
+                 salonServices[5].getTimeRequired() + " Price: $48.00 Time: 55");
+            }
+            
+         }while(userSortOption != EXIT);
+      }
+      
+   //Sorts by service description (ascending).
+   public static void serviceDescriptionSort(Service[] array)
+   {
+      int a, b;
+      Service temp;
+      int highSubscript = 5;
+      
+      for(a = 0; a < highSubscript; ++a)
+      {
+         for(b = 0; b < highSubscript; ++b)
+         {
+            if(services[b].getServiceDescription() > salonServices[b + 1].getServiceDescription())
+            {
+               temp = salonServices[b];
+              salonServices[b] = salonServices[b + 1];
+              salonServices[b + 1] = temp;
+            }
+         }
+      } 
+   }
+   
+   //Sorts by price (ascending)
+   public static void priceSort(Service[] array)
+   {
+      int a, b;
+      Service temp;
+      int highSubscript = 5;
+      
+      for(a = 0; a < highSubscript; ++a)
+      {
+         for(b = 0; b < highSubscript; ++b)
+         {
+            if(services[b].getServicePrice() > salonServices[b + 1].getServicePrice())
+            {
+               temp = salonServices[b];
+              salonServices[b] = salonServices[b + 1];
+              salonServices[b + 1] = temp;
+            }
+         }
+      }
+   }
+   
+   //Sorts by time required (ascending).
+   public static void timeRequiredSort(Service[] array)
+   {
+      int a, b;
+      Service temp;
+      int highSubscript = 5;
+      
+      for(a = 0; a < highSubscript; ++a)
+      {
+         for(b = 0; b < highSubscript; ++b)
+         {
+            if(services[b].getTimeRequired() > salonServices[b + 1].getTimeRequired())
+            {
+               temp = salonServices[b];
+              salonServices[b] = salonServices[b + 1];
+              salonServices[b + 1] = temp;
+            }
+         }
+      }
+   }
+}
